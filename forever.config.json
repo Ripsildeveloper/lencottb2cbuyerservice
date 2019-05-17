@@ -1,0 +1,7 @@
+{
+    "uid": "buyer",
+    "append": true,
+    "watch": true,
+    "script": "server.js",
+    "sourceDir": "/home/ubuntu/app/buyer-service/src"
+}
