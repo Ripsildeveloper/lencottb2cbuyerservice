@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 3101, // port no
+    port = process.env.PORT || 3102, // port no
     bodyParser = require('body-parser');
 var cors = require('cors');
 var exec = require('child_process').exec;
@@ -24,7 +24,7 @@ routes.loadRoutes(app);
 var httpServer = http.createServer(app);
 
 
-httpServer.listen(3002);
+httpServer.listen(3102);
 
 
 
