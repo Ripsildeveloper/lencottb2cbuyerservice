@@ -43,11 +43,11 @@ exports.addToCart = function (req, res) {
         } else {
           var itemReq = req.body.items;
           var cartDb = foundCart.items;
-          var key = "productId";
+          var key = "skuCode";
           itemReq.map(element => {
-            if (cartDb.find(s => s[key].toString() === element[key])) {
-              const dbSame = cartDb.find(s => s[key].toString() === element[key])
-              dbSame.pack += element.pack
+            if (cartDb.find(s => s[key] === element[key])) {
+              const dbSame = cartDb.find(s => s[key] === element[key])
+              dbSame.qty += element.qty
             } else {
               foundCart.items.push(element);
             }
@@ -75,6 +75,7 @@ exports.addToCart = function (req, res) {
                   });
                 } else {
                   res.status(200).json(cartData);
+                  
                 }
               });
             }
@@ -115,8 +116,8 @@ exports.findCartProductDecrement = function (req, res) {
     } else {
       var items = req.body.items;
       for (var i = 0; i < findProductData.items.length; i++) {
-        if (findProductData.items[i].productId.toString() == items.productId) {
-          findProductData.items[i].pack = findProductData.items[i].pack - items.pack;
+        if (findProductData.items[i].skuCode == items.skuCode) {
+          findProductData.items[i].qty = findProductData.items[i].qty - items.qty;
         }
       }
       findProductData.save(function (err, cartProductDetail) {
@@ -125,7 +126,7 @@ exports.findCartProductDecrement = function (req, res) {
         } else {
           Cart.aggregate([
             { $match: { userId: req.body.userId } },
-            { $unwind: "$items" },
+            /* { $unwind: "$items" }, */
             {
               $lookup:
               {
@@ -160,7 +161,7 @@ exports.cartProductDelete = function (req, res) {
         });
       } else {
         cartData.items.id(req.params.itemId).remove();
-        cartData.save(function (err) {
+        cartData.save(function (err, cartSave) {
           if (err) {
             res.status(201).send({
               "result": 0

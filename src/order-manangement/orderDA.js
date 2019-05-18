@@ -101,14 +101,10 @@ exports.updateQtyProducts = function (req, res) {
     } else {
       var updatedData = [];
       for (var i = 0; i < order.items.length; i++) {
-        var item = order.items[i].size;
         var itemProduct = order.items[i];
-        for (var j = 0; j < item.length; j++) {
-          var qty = item[j].ratio * itemProduct.pack * itemProduct.moq;
-          var skuCode = item[j].skuCode;
           Product.update({
-            _id: itemProduct.productId, "size.skuCode": skuCode
-          }, { $inc: { "size.$.sizeQty": -qty } }, function (err, update) {
+            _id: itemProduct.productId, "size.skuCode": itemProduct.skuCode
+          }, { $inc: { "size.$.sizeQty": -itemProduct.qty } }, function (err, update) {
             if (err) {
               res.status(500).send({
                 message: "Some error occurred while retrieving products."
@@ -117,7 +113,6 @@ exports.updateQtyProducts = function (req, res) {
               updatedData.push(update)
             }
           });
-        }
       }
       res.status(200).json(updatedData);
     }

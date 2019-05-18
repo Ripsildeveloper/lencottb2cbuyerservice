@@ -1,5 +1,5 @@
 module.exports = {
- /*  productServerPath: 'http://localhost/Lencott/products/',
+  /* productServerPath: 'http://localhost/Lencott/products/',
   bannerServerPath: 'http://localhost/Lencott/banners/',
   adsServerPath: 'http://localhost/Lencott/ads/',
   categoryServerPath: 'http://localhost/Lencott/category/',
