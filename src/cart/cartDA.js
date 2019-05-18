@@ -126,7 +126,7 @@ exports.findCartProductDecrement = function (req, res) {
         } else {
           Cart.aggregate([
             { $match: { userId: req.body.userId } },
-            /* { $unwind: "$items" }, */
+            { $unwind: "$items" },
             {
               $lookup:
               {
