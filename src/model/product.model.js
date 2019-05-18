@@ -11,10 +11,10 @@ const ProductSchema = new mongoose.Schema({
     color: String,
     styleCode: String,
     productImageName: [String],
-    subCategory: String,
+    superCategoryId: String,
+    mainCategoryId: String,
+    subCategoryId: String,
     bulletPoints: String,
-    /* mfdQty: Number, */
-    moq: Number,
     spPrice: Number,
     mrpPrice: Number,
     // details
@@ -24,9 +24,6 @@ const ProductSchema = new mongoose.Schema({
     occassion: String,
 
     //size
-    superCategoryId: String,
-    mainCategoryId: String,
-    subCategoryId: String,
     size: [size]
 
 });
