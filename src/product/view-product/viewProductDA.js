@@ -22,7 +22,7 @@ exports.viewProducts = function (req, res) {
             }
             res.status(200).json(product);
         }
-    })
+    });
 }
 
 
@@ -106,7 +106,7 @@ exports.relatedProducts = function (req, res) {
             res.status(200).json(productData);
 
         }
-    })
+    });
 }
 exports.lowToHigh = function (req, res) {
     Product.find({
