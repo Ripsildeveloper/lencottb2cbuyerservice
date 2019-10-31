@@ -14,7 +14,7 @@
     "child_process": "^1.0.2",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "mongoose": "^5.0.18",
+    "mongoose": "^5.7.5",
     "nodemailer": "^4.6.7",
     "nodemon": "^1.17.4",
     "random-key-generator": "^1.2.3",
